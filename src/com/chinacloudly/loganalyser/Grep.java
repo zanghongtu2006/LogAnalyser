@@ -54,21 +54,19 @@ public class Grep {
         FileReader reader = null;
         BufferedReader br = null;
         try {
-            System.out.println(file);
             reader = new FileReader(file);
             br = new BufferedReader(reader);
             String line = br.readLine();
             while (line != null) {
                 String result = analyseline(line);
                 if(result != null) {
-                    _logger.info(file + ":" + line);
+                    _logger.info(new StringBuilder(file).append(":").append(result));
                 }
                 totalLineCount ++;
                 line = br.readLine();
             }
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            _logger.error("File not found, file: " + file);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
