@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="myConsole" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{MM-dd HH:mm:ss,SSS\} %-5p] [%t] %c{2\} - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="info" />
+			<param name="levelMax" value="error" />
+			<param name="AcceptOnMatch" value="true" />
+		</filter>
+	</appender>
+	
+	<!-- add log -->
+	<appender name="log_analyser" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="./log/ImcInfoId201.log" />
+		<param name="DatePattern" value="'.'yyyy-MM'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+		        <param name="ConversionPattern" value="[%d{MM-dd HH:mm:ss,SSS\} %-5p] - %m%n" />
+		</layout>
+	</appender>
+	
+	<root>
+		<priority value="info" />
+		<appender-ref ref="myConsole" />
+		<appender-ref ref="log_analyser" />
+	</root>
+	
+	
+</log4j:configuration>
